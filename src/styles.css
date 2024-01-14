@@ -88,3 +88,11 @@ body {
 .game-info {
   margin-left: 20px;
 }
+
+.mini-board {
+  padding: 10px;
+}
+
+.game-board-row {
+  display: flex;
+}

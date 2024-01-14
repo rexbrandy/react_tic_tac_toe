@@ -35,22 +35,23 @@ function Board({xIsNext, squares, move, onPlay}) {
 
   return (
     <>
-      <div className='board-row'>
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)}/>
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)}/>
+      <div className='mini-board'>
+        <div className='board-row'>
+          <Square value={squares[0]} onSquareClick={() => handleClick(0)}/>
+          <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
+          <Square value={squares[2]} onSquareClick={() => handleClick(2)}/>
+        </div>
+        <div className='board-row'>
+          <Square value={squares[3]} onSquareClick={() => handleClick(3)}/>
+          <Square value={squares[4]} onSquareClick={() => handleClick(4)}/>
+          <Square value={squares[5]} onSquareClick={() => handleClick(5)}/>
+        </div>
+        <div className='board-row'>
+          <Square value={squares[6]} onSquareClick={() => handleClick(6)}/>
+          <Square value={squares[7]} onSquareClick={() => handleClick(7)}/>
+          <Square value={squares[8]} onSquareClick={() => handleClick(8)}/>
+        </div>
       </div>
-      <div className='board-row'>
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)}/>
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)}/>
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)}/>
-      </div>
-      <div className='board-row'>
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)}/>
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)}/>
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)}/>
-      </div>
-      <div className='status'>{status}</div>
     </>
   )
 }
@@ -88,7 +89,21 @@ export default function Game() {
   return (
     <div className='game'>
       <div className='game-board'>
-        <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+      <div className='game-board-row'>
+          <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+          <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+          <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+        </div>
+        <div className='game-board-row'>
+          <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+          <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+          <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+        </div>
+        <div className='game-board-row'>
+          <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+          <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+          <Board xIsNext={xIsNext} squares={currentSquares} move={currentMove} onPlay={handlePlay} />
+        </div>
       </div>
       <div className='game-info'>
         <ol>{moves}</ol>
