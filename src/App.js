@@ -19,7 +19,6 @@ function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
 
     onPlay(nextSquares, boardNumber, i);
   }
-
   
   const winner = calculateBoardWinner(squares);
   if (winner === 'O') {
@@ -51,7 +50,7 @@ function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
       <>
         <div className='mini-board'>
           <div className='board-row'>
-            <Square value={wonBoard[0]} onSquareClick={() => handleClick(0)}/>
+            <Square classExtras={['top', 'left']} value={wonBoard[0]} onSquareClick={() => handleClick(0)}/>
             <Square value={wonBoard[1]} onSquareClick={() => handleClick(1)}/>
             <Square value={wonBoard[2]} onSquareClick={() => handleClick(2)}/>
           </div>
@@ -142,7 +141,7 @@ export default function Game() {
           <Board xIsNext={xIsNext} squares={boards[1]} onPlay={handlePlay} boardNumber={1} gameToPlay={gameToPlay}/>
           <Board xIsNext={xIsNext} squares={boards[2]} onPlay={handlePlay} boardNumber={2} gameToPlay={gameToPlay}/>
         </div>
-        <div className='game-board-row'>
+        <div className='game-board-row middle-row'>
           <Board xIsNext={xIsNext} squares={boards[3]} onPlay={handlePlay} boardNumber={3} gameToPlay={gameToPlay}/>
           <Board xIsNext={xIsNext} squares={boards[4]} onPlay={handlePlay} boardNumber={4} gameToPlay={gameToPlay}/>
           <Board xIsNext={xIsNext} squares={boards[5]} onPlay={handlePlay} boardNumber={5} gameToPlay={gameToPlay}/>
