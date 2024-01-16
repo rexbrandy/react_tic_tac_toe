@@ -1,5 +1,10 @@
 import { useState } from 'react';
 
+// TODO
+// - Make boards array of objects that hold board squares and status (x/o/null)
+// - Render boards differently
+// - Decide if board winner should be decided in Board or Game
+
 function Square({value, onSquareClick}) {
   return (
     <button className='square' onClick={onSquareClick}>
