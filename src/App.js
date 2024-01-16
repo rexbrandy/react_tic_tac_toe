@@ -10,6 +10,7 @@ function Square({value, onSquareClick}) {
 
 function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
   function handleClick(i) {
+    // handles what happens when you click on a square - if valid then assign value
     if ((gameToPlay && boardNumber != gameToPlay) || squares[i] || winner) {// || calculateWinner(squares)) {
       return;
     }
@@ -19,82 +20,52 @@ function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
 
     onPlay(nextSquares, boardNumber, i);
   }
+
+  function renderBoard(boardArray) {
+    // Splits game squares arrray into chunks of 3 then renders them between 'board-row' div tags
+    const chunks = [];
+    for (let i = 0; i < boardArray.length; i += 3) {
+      chunks.push( boardArray.slice(i, i + 3).map((item, index) => ({
+        item,
+        index: i + index,
+      })));
+    }
+    return chunks.map((chunk) => (
+      <div key={'board'+boardNumber} className='board-row'>
+        {chunk.map(({item, index}) => (
+          <Square value={item} onSquareClick={() => handleClick(index)}/>
+        ))}
+      </div>
+    ))
+  }
   
   const winner = calculateBoardWinner(squares);
+  let boardToRender = squares;
+  let winnerClass = null;
   if (winner === 'O') {
-    const wonBoard = [null, winner, null, winner, null, winner, null, winner]
-    return (
-      <>
-        <div className='mini-board'>
-          <div className='board-row'>
-            <Square value={wonBoard[0]} onSquareClick={() => handleClick(0)}/>
-            <Square value={wonBoard[1]} onSquareClick={() => handleClick(1)}/>
-            <Square value={wonBoard[2]} onSquareClick={() => handleClick(2)}/>
-          </div>
-          <div className='board-row'>
-            <Square value={wonBoard[3]} onSquareClick={() => handleClick(3)}/>
-            <Square value={wonBoard[4]} onSquareClick={() => handleClick(4)}/>
-            <Square value={wonBoard[5]} onSquareClick={() => handleClick(5)}/>
-          </div>
-          <div className='board-row'>
-            <Square value={wonBoard[6]} onSquareClick={() => handleClick(6)}/>
-            <Square value={wonBoard[7]} onSquareClick={() => handleClick(7)}/>
-            <Square value={wonBoard[8]} onSquareClick={() => handleClick(8)}/>
-          </div>
-        </div>
-      </>
-    )
-  } else if (winner === 'X'){
-    const wonBoard = [winner, null, winner, null, winner, null, winner, null, winner]
-    return (
-      <>
-        <div className='mini-board'>
-          <div className='board-row'>
-            <Square classExtras={['top', 'left']} value={wonBoard[0]} onSquareClick={() => handleClick(0)}/>
-            <Square value={wonBoard[1]} onSquareClick={() => handleClick(1)}/>
-            <Square value={wonBoard[2]} onSquareClick={() => handleClick(2)}/>
-          </div>
-          <div className='board-row'>
-            <Square value={wonBoard[3]} onSquareClick={() => handleClick(3)}/>
-            <Square value={wonBoard[4]} onSquareClick={() => handleClick(4)}/>
-            <Square value={wonBoard[5]} onSquareClick={() => handleClick(5)}/>
-          </div>
-          <div className='board-row'>
-            <Square value={wonBoard[6]} onSquareClick={() => handleClick(6)}/>
-            <Square value={wonBoard[7]} onSquareClick={() => handleClick(7)}/>
-            <Square value={wonBoard[8]} onSquareClick={() => handleClick(8)}/>
-          </div>
-        </div>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <div className='mini-board'>
-          <div className='board-row'>
-            <Square value={squares[0]} onSquareClick={() => handleClick(0)}/>
-            <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
-            <Square value={squares[2]} onSquareClick={() => handleClick(2)}/>
-          </div>
-          <div className='board-row'>
-            <Square value={squares[3]} onSquareClick={() => handleClick(3)}/>
-            <Square value={squares[4]} onSquareClick={() => handleClick(4)}/>
-            <Square value={squares[5]} onSquareClick={() => handleClick(5)}/>
-          </div>
-          <div className='board-row'>
-            <Square value={squares[6]} onSquareClick={() => handleClick(6)}/>
-            <Square value={squares[7]} onSquareClick={() => handleClick(7)}/>
-            <Square value={squares[8]} onSquareClick={() => handleClick(8)}/>
-          </div>
-        </div>
-      </>
-    )
+    boardToRender = [null, winner, null, winner, null, winner, null, winner];
+    winnerClass = 'o-winner';
+  } else if (winner === 'X') {
+    boardToRender = [winner, null, winner, null, winner, null, winner, null, winner];
+    winnerClass = 'x-winner';
   }
+
+  return (
+      <>
+        <div className={'mini-board '+winnerClass}>
+          {renderBoard(boardToRender)}
+        </div>
+      </>
+    )
 }
 
 
 export default function Game() {
   const [boards, setBoards] = useState(Array(9).fill(Array(9).fill(null)));
+  /*useState(Array(9).fill({
+    'winner': null,
+    'squares': Array(9).fill(null),
+  }));*/
   const [gameToPlay, setGameToPlay] = useState(null);
   const [xIsNext, setXIsNext] = useState(true);
 

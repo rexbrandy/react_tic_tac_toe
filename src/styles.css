@@ -69,6 +69,7 @@ body {
   padding: 0;
   text-align: center;
   width: 34px;
+  color: inherit;
 }
 
 .square.top {
@@ -113,4 +114,12 @@ body {
 
 .game-board-row {
   display: flex;
+}
+
+.o-winner {
+  color: blue;
+}
+
+.x-winner {
+  color: red;
 }
