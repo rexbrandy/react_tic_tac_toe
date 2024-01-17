@@ -12,15 +12,21 @@ Make sure you have Node.js and npm installed on your machine.
 
 ### Installation
 Clone the repository:
-`git clone https://github.com/your-username/react-ultimate-tic-tac-toe.git`
+```
+git clone https://github.com/your-username/react-ultimate-tic-tac-toe.git
+```
 
 
 Navigate to the project directory:
-`cd react-ultimate-tic-tac-toe`
+```
+cd react-ultimate-tic-tac-toe
+```
 
 
 Install dependencies:
-`npm install`
+```
+npm install
+```
 
 ### Project structure
 ```
@@ -38,7 +44,9 @@ Install dependencies:
 
 # Usage
 To run the application, use the following command:
-`npm start`
+```
+npm start
+```
 
 This will start the development server, and you can access the app in your web browser at http://localhost:3000.
 
