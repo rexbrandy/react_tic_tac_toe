@@ -27,13 +27,8 @@ function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
 
   function renderBoard(boardArray) {
     // Splits game squares arrray into chunks of 3 then renders them between 'board-row' div tags
-    const chunks = [];
-    for (let i = 0; i < boardArray.length; i += 3) {
-      chunks.push( boardArray.slice(i, i + 3).map((item, index) => ({
-        item,
-        index: i + index,
-      })));
-    }
+    const chunks = chunkArray(boardArray);
+
     return chunks.map((chunk) => (
       <div key={'board'+boardNumber} className='board-row'>
         {chunk.map(({item, index}) => (
@@ -95,13 +90,7 @@ export default function Game() {
   }
 
   function renderGame() {
-    const chunks = [];
-    for (let i = 0; i < boards.length; i += 3) {
-      chunks.push(boards.slice(i,i + 3).map((item, index) => ({
-        item,
-        index: i+index
-      })))
-    };
+    const chunks = chunkArray(boards);
 
     return chunks.map((chunk, rowIndex) => (
       <div className={rowIndex == 1 ? 'game-board-row middle-row' : 'game-board-row'}>
@@ -138,6 +127,17 @@ export default function Game() {
       </div>
     </div>
   )
+}
+
+function chunkArray(array) {
+  const chunks = []
+  for (let i = 0; i < array.length; i += 3) {
+    chunks.push(array.slice(i,i + 3).map((item, index) => ({
+      item,
+      index: i+index
+    })))
+  };
+  return chunks;
 }
 
 function calculateBoardWinner(squares) {
