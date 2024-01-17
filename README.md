@@ -42,7 +42,7 @@ npm install
 
 ```
 
-# Usage
+## Usage
 To run the application, use the following command:
 ```
 npm start
@@ -50,11 +50,11 @@ npm start
 
 This will start the development server, and you can access the app in your web browser at http://localhost:3000.
 
-# Game Features
+## Game Features
 Ultimate Tic Tac Toe with a 3x3 grid of smaller boards.
 Dynamic rendering of the game board and squares.
 Indicates the winner of each smaller board and the overall game.
 Player information, including the current player and the game to play.
 
-# Contributing
+## Contributing
 Feel free to contribute to the project by opening issues or submitting pull requests. Your feedback and contributions are highly appreciated.
