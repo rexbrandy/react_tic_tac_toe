@@ -1,5 +1,10 @@
 # React Ultimate Tic Tac Toe Game
 
+<img height="250" alt="Screen Shot 2024-01-17 at 10 57 48 pm" src="https://github.com/rexbrandy/react_ultimate_tic_tac_toe/assets/31530319/18a2edcd-7a14-4c51-929a-47dbf95eb6c3">
+
+
+<img height="250" alt="Screen Shot 2024-01-17 at 10 56 19 pm" src="https://github.com/rexbrandy/react_ultimate_tic_tac_toe/assets/31530319/470c4966-8402-4aaa-8ddc-51c4dd456610">
+
 ## Overview
 
 This project is a React implementation of the Ultimate Tic Tac Toe game.
