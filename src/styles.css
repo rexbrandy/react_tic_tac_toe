@@ -60,15 +60,15 @@ body {
   background: #fff;
   border: 1px solid #999;
   float: left;
-  font-size: 24px;
+  font-size: 6vh;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: 9vh;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 9vh;
   color: inherit;
 }
 
@@ -87,11 +87,14 @@ body {
 }
 
 .middle-row {
+  border-width: 0.5vh;
   border-top-style: solid;
   border-bottom-style: solid;
 }
 
 .middle-col {
+  border-color: black;
+  border-width: 0.5vh;
   border-left-style: solid;
   border-right-style: solid;
 }

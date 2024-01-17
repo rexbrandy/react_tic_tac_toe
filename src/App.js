@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 // TODO
-// - Make boards array of objects that hold board squares and status (x/o/null)
+// - Make boards array of objects that hold board squares and winner status (x/o/null)
 // - Decide if board winner should be decided in Board or Game
 
 function Square({value, onSquareClick}) {
@@ -32,7 +32,7 @@ function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
     return chunks.map((chunk) => (
       <div key={'board'+boardNumber} className='board-row'>
         {chunk.map(({item, index}) => (
-          <Square value={item} onSquareClick={() => handleClick(index)}/>
+          <Square key={'square'+index} value={item} onSquareClick={() => handleClick(index)}/>
         ))}
       </div>
     ))
@@ -40,9 +40,9 @@ function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
   
   const winner = calculateBoardWinner(squares);
   let boardToRender = squares;
-  let winnerClass = null;
+  let winnerClass = '';
   if (winner === 'O') {
-    boardToRender = [null, winner, null, winner, null, winner, null, winner];
+    boardToRender = [null, winner, null, winner, null, winner, null, winner, null];
     winnerClass = 'o-winner';
   } else if (winner === 'X') {
     boardToRender = [winner, null, winner, null, winner, null, winner, null, winner];
@@ -51,7 +51,7 @@ function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
 
   return (
       <>
-        <div className={'mini-board '+winnerClass}>
+        <div className={'mini-board '+ (boardNumber % 3 === 1 ? 'middle-col' : '') +  winnerClass }>
           {renderBoard(boardToRender)}
         </div>
       </>
@@ -93,9 +93,9 @@ export default function Game() {
     const chunks = chunkArray(boards);
 
     return chunks.map((chunk, rowIndex) => (
-      <div className={rowIndex == 1 ? 'game-board-row middle-row' : 'game-board-row'}>
+      <div key={'row'+rowIndex} className={rowIndex === 1 ? 'game-board-row middle-row' : 'game-board-row'}>
         {chunk.map(({item, index}) => (
-          <Board xIsNext={xIsNext} squares={item} onPlay={handlePlay} boardNumber={index} gameToPlay={gameToPlay}/>
+          <Board key={'board'+index} xIsNext={xIsNext} squares={item} onPlay={handlePlay} boardNumber={index} gameToPlay={gameToPlay}/>
         ))}
       </div>
     ))
