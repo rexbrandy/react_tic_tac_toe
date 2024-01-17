@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 // TODO
 // - Make boards array of objects that hold board squares and status (x/o/null)
-// - Render boards differently
 // - Decide if board winner should be decided in Board or Game
 
 function Square({value, onSquareClick}) {
@@ -95,6 +94,24 @@ export default function Game() {
     }
   }
 
+  function renderGame() {
+    const chunks = [];
+    for (let i = 0; i < boards.length; i += 3) {
+      chunks.push(boards.slice(i,i + 3).map((item, index) => ({
+        item,
+        index: i+index
+      })))
+    };
+
+    return chunks.map((chunk, rowIndex) => (
+      <div className={rowIndex == 1 ? 'game-board-row middle-row' : 'game-board-row'}>
+        {chunk.map(({item, index}) => (
+          <Board xIsNext={xIsNext} squares={item} onPlay={handlePlay} boardNumber={index} gameToPlay={gameToPlay}/>
+        ))}
+      </div>
+    ))
+  }
+
   const gameInfo = () => {
     if (winner) {
       return (
@@ -112,21 +129,7 @@ export default function Game() {
   return (
     <div className='game'>
       <div className='game-board'>
-      <div className='game-board-row'>
-          <Board xIsNext={xIsNext} squares={boards[0]} onPlay={handlePlay} boardNumber={0} gameToPlay={gameToPlay}/>
-          <Board xIsNext={xIsNext} squares={boards[1]} onPlay={handlePlay} boardNumber={1} gameToPlay={gameToPlay}/>
-          <Board xIsNext={xIsNext} squares={boards[2]} onPlay={handlePlay} boardNumber={2} gameToPlay={gameToPlay}/>
-        </div>
-        <div className='game-board-row middle-row'>
-          <Board xIsNext={xIsNext} squares={boards[3]} onPlay={handlePlay} boardNumber={3} gameToPlay={gameToPlay}/>
-          <Board xIsNext={xIsNext} squares={boards[4]} onPlay={handlePlay} boardNumber={4} gameToPlay={gameToPlay}/>
-          <Board xIsNext={xIsNext} squares={boards[5]} onPlay={handlePlay} boardNumber={5} gameToPlay={gameToPlay}/>
-        </div>
-        <div className='game-board-row'>
-          <Board xIsNext={xIsNext} squares={boards[6]} onPlay={handlePlay} boardNumber={6} gameToPlay={gameToPlay}/>
-          <Board xIsNext={xIsNext} squares={boards[7]} onPlay={handlePlay} boardNumber={7} gameToPlay={gameToPlay}/>
-          <Board xIsNext={xIsNext} squares={boards[8]} onPlay={handlePlay} boardNumber={8} gameToPlay={gameToPlay}/>
-        </div>
+        {renderGame()}
       </div>
       <div className='game-info'>
         <ul>
