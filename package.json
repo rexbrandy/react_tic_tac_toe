@@ -25,5 +25,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "<img height=\"250\" alt=\"Screen Shot 2024-01-17 at 10 57 48 pm\" src=\"https://github.com/rexbrandy/react_ultimate_tic_tac_toe/assets/31530319/18a2edcd-7a14-4c51-929a-47dbf95eb6c3\">",
+  "author": "q",
+  "license": "ISC"
 }
