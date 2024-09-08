@@ -51,7 +51,7 @@ function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
 
   return (
       <>
-        <div className={'mini-board '+ (boardNumber % 3 === 1 ? 'middle-col' : '') +  winnerClass }>
+        <div className={'mini-board '+ (boardNumber % 3 === 1 ? 'middle-col ' : '') +  winnerClass }>
           {renderBoard(boardToRender)}
         </div>
       </>
