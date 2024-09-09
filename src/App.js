@@ -147,6 +147,9 @@ export default function Game() {
 }
 
 function chunkArray(array) {
+  // This function will split an array into thirds
+  // input -[0, 1, 2, 3, 4, 5, 6, 7, 8]
+  // output [0, 1, 2], [3, 4, 5] [6, 7, 8]
   const chunks = []
   for (let i = 0; i < array.length; i += 3) {
     chunks.push(array.slice(i,i + 3).map((item, index) => ({
