@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Square from './components/Square'
 
 // TODO
 // - Make boards array of objects that hold board squares and winner status (x/o/null)
@@ -6,7 +7,7 @@ import { useState } from 'react';
 // - Add play agiain button
 // - Refactor code
 // - Components for Square, Board, etc
-
+/*
 function Square({value, onSquareClick}) {
   return (
     <button className='square' onClick={onSquareClick}>
@@ -14,7 +15,7 @@ function Square({value, onSquareClick}) {
     </button>
   )
 }
-
+*/
 function Board({xIsNext, squares, onPlay, boardNumber, gameToPlay}) {
   function handleClick(i) {
     // handles what happens when you click on a square - if valid then assign value
